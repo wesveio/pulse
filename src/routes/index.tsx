@@ -3,8 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { Vibration } from '../components/vibrate/vibrate'
 import { Share } from '../components/share/share'
 
-export default component$((props) => {
-  console.log('PROPS', props)
+export default component$(() => {
   return (
     <>
       <Share />

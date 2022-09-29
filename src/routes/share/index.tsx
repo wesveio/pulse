@@ -1,12 +1,11 @@
 import { component$ } from '@builder.io/qwik';
+import type { DocumentHead } from '@builder.io/qwik-city';
 import { useLocation } from '@builder.io/qwik-city';
-
-
 
 export default component$(() => {
   const location = useLocation();
   const { query } = location
-  console.log("LOCATIONS", location)
+
   return (
     <>
       <h1>Share Page</h1>
@@ -16,3 +15,7 @@ export default component$(() => {
     </>
   );
 });
+
+export const head: DocumentHead = {
+  title: 'Share',
+};
