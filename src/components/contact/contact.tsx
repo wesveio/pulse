@@ -6,7 +6,8 @@ export const openContacts = async () => {
     const opts = { multiple: true };
     const supported = 'contacts' in navigator && 'ContactsManager' in window;
   if (supported) {
-    const contacts = await navigator?.contacts?.select(props, opts);
+    const nav = navigator as any
+    const contacts = await nav?.contacts?.select(props, opts);
     console.log('CONTACTS', contacts);
   }
 };
