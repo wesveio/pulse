@@ -40,6 +40,7 @@ export const RouterHead = component$(() => {
         href='images/favicon-16x16.png'
       />
       <link rel='shortcut icon' href='images/favicon.ico' />
+      <link rel="manifest" href="/manifest.json"></link>
 
       <meta property='og:site_name' content='Qwik' />
       <meta name='twitter:site' content='@QwikDev' />

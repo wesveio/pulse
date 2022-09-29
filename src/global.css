@@ -40,7 +40,12 @@ main {
   font-weight: bold;
   text-transform: uppercase;
   box-shadow: 0px 0px 15px 5px rgba(240, 84, 84, .5);
+  margin: 2rem 0;
   cursor: pointer;
+}
+.button.button--green {
+  background-color: #bcf054;
+  box-shadow: 0px 0px 15px 5px rgba(188, 240, 84, .5);
 }
 
 footer {
