@@ -16,7 +16,8 @@ export const openContacts = async () => {
   if (supported) {
     const nav = navigator as any;
     const contactsSelected = await nav?.contacts?.select(props, opts);
-    contacts.push(...contactsSelected)
+    // contacts.push(...contactsSelected)
+    console.log('STORE CONTACTS', contacts);
     console.log('SELECTED CONTACTS', contactsSelected);
   }
 };
