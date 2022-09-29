@@ -2,7 +2,6 @@ import { component$ } from '@builder.io/qwik';
 
 export const sharing = () => {
   const supported = 'share' in window.navigator;
-  alert(supported);
   if (supported) {
     const shareOpts = {
       title: 'Hello and Welcome to Pulse Share me 🍕!',
