@@ -4,8 +4,8 @@ export const sharing = () => {
   const supported = 'share' in window.navigator;
   if (supported) {
     const shareOpts = {
-      title: 'Hello and Welcome to Pulse Share me 🍕!',
-      text: 'This is a awesome feature to add in your project',
+      title: 'Hello and Welcome to Pulse!',
+      text: 'A better way to share 🍕!',
       url: 'https://bckstg.com.br',
     };
     window.navigator
