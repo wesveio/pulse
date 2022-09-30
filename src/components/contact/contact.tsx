@@ -1,44 +1,7 @@
-import {
-  component$,
-  createContext,
-  //   useContextProvider,
-  useStore,
-  //   useContext,
-  //   useWatch$,
-  $,
-} from '@builder.io/qwik';
-
-export const ContactsContext = createContext('Contacts');
+import { component$, useStore, $ } from '@builder.io/qwik';
+import { ContactList } from './contactList';
 
 export const Contact = component$(() => {
-  /* useContextProvider(
-    ContactsContext,
-    useStore({
-      contacts: [],
-    })
-  ); */
-
-  return <ContactComponent />;
-});
-
-/* export const openContacts = async () => {
-  const props = ['name', 'email', 'tel', 'address', 'icon'];
-  const opts = { multiple: true };
-  const supported = 'contacts' in navigator && 'ContactsManager' in window;
-  //   console.log('####', contacts);
-  if (supported) {
-    const nav = navigator as any;
-    return await nav?.contacts?.select(props, opts).then((res: any) => {
-      console.log('SELECTED CONTACTS', res);
-      return res;
-    });
-  } else {
-    console.log('@@@@@ ELSE');
-    return [];
-  }
-}; */
-
-export const ContactComponent = component$(() => {
   const store: any = useStore({
     contacts: [],
   });
@@ -50,12 +13,10 @@ export const ContactComponent = component$(() => {
     if (supported) {
       const nav = navigator as any;
       nav?.contacts?.select(props, opts).then((res: any) => {
-        console.log('SELECTED CONTACTS', res);
         store.contacts = res;
       });
     } else {
-      console.log('@@@@@ ELSE');
-      store.contacts = [];
+        store.contacts = [];
     }
   });
 
@@ -63,14 +24,14 @@ export const ContactComponent = component$(() => {
 
   return (
     <>
-      <button
-        onClick$={() => (openContacts())}
-        class='button button--green'
-      >
+      <button onClick$={() => openContacts()} class='button button--green'>
         Contacts 📡
       </button>
-      {JSON.stringify(store.contacts)}
-      {store.contacts.length ? <p>Teste</p> : <></>}
+      {store.contacts.length ? (
+        <ContactList contacts={store.contacts} />
+      ) : (
+        <></>
+      )}
     </>
   );
 });
