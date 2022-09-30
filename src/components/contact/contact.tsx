@@ -24,6 +24,7 @@ export const openContacts = (contacts: any) => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
+  console.log('####', contacts)
   if (supported) {
     const nav = navigator as any;
     nav?.contacts?.select(props, opts).then((data: any) => {
@@ -32,8 +33,12 @@ export const openContacts = (contacts: any) => {
       //   console.log('STORE CONTACTS', contacts);
     });
   } else {
+      console.log('@@@@@ ELSE');
     return contacts;
   }
+  console.log('$$$$$ PASSOU');
+  
+  return contacts
 };
 
 export const ContactComponent = component$(() => {
@@ -53,7 +58,6 @@ export const ContactComponent = component$(() => {
       >
         Contacts 📡
       </button>
-      {contacts?.contacts.length && <p>Teste</p>}
     </>
   );
 });
