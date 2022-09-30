@@ -4,6 +4,7 @@ import {
   useContextProvider,
   useStore,
   useContext,
+  useWatch$
 } from '@builder.io/qwik';
 
 export const ContactsContext = createContext('Contacts');
@@ -19,27 +20,27 @@ export const Contact = component$(() => {
   return <ContactComponent />;
 });
 
-export const openContacts = (contacts: any) => {
+export const openContacts = (contacts:any) => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
-  console.log('openContacts', contacts.contacts);
-
   if (supported) {
     const nav = navigator as any;
     nav?.contacts?.select(props, opts).then((data: any) => {
       console.log('SELECTED CONTACTS', data);
-      useStore({
-        contacts: data
-      })
-    //   contacts.contacts.push(...data);
-    //   console.log('STORE CONTACTS', contacts);
+      contacts.contacts = data;
+      //   console.log('STORE CONTACTS', contacts);
     });
   }
 };
 
 export const ContactComponent = component$(() => {
   const contacts = useContext(ContactsContext) as any;
+
+  useWatch$(({ track }) => {
+    track(contacts, 'contacts');
+  });
+
   console.log('CONTACTS', contacts);
 
   return (
@@ -50,11 +51,7 @@ export const ContactComponent = component$(() => {
       >
         Contacts 📡
       </button>
-      {
-        contacts.length && (
-            <p>Teste</p>
-        )
-      }
+      {contacts.length && <p>Teste</p>}
     </>
   );
 });
