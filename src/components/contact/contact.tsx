@@ -1,10 +1,10 @@
 import {
   component$,
   createContext,
-  /* useContextProvider,
+  //   useContextProvider,
   useStore,
-  useContext,
-  useWatch$, */
+  //   useContext,
+  useWatch$,
 } from '@builder.io/qwik';
 
 export const ContactsContext = createContext('Contacts');
@@ -38,9 +38,13 @@ export const openContacts = async () => {
 };
 
 export const ContactComponent = component$(() => {
-  const store: any = {
+  const store:any = useStore({
     contacts: [],
-  };
+  });
+
+  useWatch$(({ track }) => {
+    track(store, 'contacts');
+  });
 
   console.log('CONTACTS', store?.contacts);
 
