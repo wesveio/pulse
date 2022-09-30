@@ -34,7 +34,6 @@ export const openContacts = async () => {
     console.log('@@@@@ ELSE');
     return [];
   }
-  //   console.log('$$$$$ PASSOU');
 };
 
 export const ContactComponent = component$(() => {
@@ -56,7 +55,8 @@ export const ContactComponent = component$(() => {
       >
         Contacts 📡
       </button>
-      {store.contacts.length ? <p>Teste</p> : <></>}
+      {JSON.stringify(store.contacts)}
+      {/* {store.contacts.length ? <p>Teste</p> : <></>} */}
     </>
   );
 });
