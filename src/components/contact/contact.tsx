@@ -1,60 +1,58 @@
 import {
   component$,
   createContext,
-  useContextProvider,
+  /* useContextProvider,
   useStore,
   useContext,
-  useWatch$,
+  useWatch$, */
 } from '@builder.io/qwik';
 
 export const ContactsContext = createContext('Contacts');
 
 export const Contact = component$(() => {
-  useContextProvider(
+  /* useContextProvider(
     ContactsContext,
     useStore({
       contacts: [],
     })
-  );
+  ); */
 
   return <ContactComponent />;
 });
 
-export const openContacts = async (contacts: any) => {
+export const openContacts = async () => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
-  console.log('####', contacts);
+  //   console.log('####', contacts);
   if (supported) {
     const nav = navigator as any;
     const res = await nav?.contacts?.select(props, opts);
     console.log('SELECTED CONTACTS', res);
-    contacts = res;
+    return res;
   } else {
-    console.log('@@@@@ ELSE', contacts);
-    // contacts = contacts;
+    console.log('@@@@@ ELSE');
+    return [];
   }
-  console.log('$$$$$ PASSOU');
+  //   console.log('$$$$$ PASSOU');
 };
 
 export const ContactComponent = component$(() => {
-  const contacts = useContext(ContactsContext) as any;
+  const store: any = {
+    contacts: [],
+  };
 
-  /* useWatch$(({ track }) => {
-    track(contacts, 'contacts');
-  }); */
-
-  console.log('CONTACTS', contacts?.contacts);
+  console.log('CONTACTS', store?.contacts);
 
   return (
     <>
       <button
-        onClick$={() => (openContacts(contacts.contacts))}
+        onClick$={() => (store.contacts = openContacts())}
         class='button button--green'
       >
         Contacts 📡
       </button>
-      {contacts.contacts.length ? <p>Teste</p> : <></>}
+      {store.contacts.length ? <p>Teste</p> : <></>}
     </>
   );
 });
