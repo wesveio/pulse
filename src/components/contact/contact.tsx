@@ -24,21 +24,17 @@ export const openContacts = async (contacts: any) => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
-  console.log('####', contacts)
+  console.log('####', contacts);
   if (supported) {
     const nav = navigator as any;
-    await nav?.contacts?.select(props, opts).then((data: any) => {
-      console.log('SELECTED CONTACTS', data);
-      return data;
-      //   console.log('STORE CONTACTS', contacts);
-    });
+    const res = await nav?.contacts?.select(props, opts);
+    console.log('SELECTED CONTACTS', res);
+    return res;
   } else {
-      console.log('@@@@@ ELSE');
+    console.log('@@@@@ ELSE');
     return contacts;
   }
   console.log('$$$$$ PASSOU');
-  
-  return contacts
 };
 
 export const ContactComponent = component$(() => {
@@ -48,7 +44,7 @@ export const ContactComponent = component$(() => {
     track(contacts);
   });
 
-  console.log('CONTACTS', contacts);
+  console.log('CONTACTS', contacts?.contacts);
 
   return (
     <>
