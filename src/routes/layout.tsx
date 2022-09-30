@@ -13,7 +13,7 @@ export default component$(() => {
           Made with ♡ by BCKSTG
         </a>
         <a href="https://qwik.builder.io/?ref=bckstg.com.br" target="_blank">
-          Powered with ♡ by qwik
+          Powered by qwik
         </a>
       </footer>
     </>
