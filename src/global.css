@@ -110,8 +110,6 @@ footer a {
   font-size: 14px;
 }
 
-.contact_info span:not(:last-child):after {
-  content: '|';
-  display: inline;
-  margin: 0 4px;
+.contact_info span {
+  display: block;
 }
