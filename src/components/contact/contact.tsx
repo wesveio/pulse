@@ -1,9 +1,13 @@
-import { component$, useStore, $ } from '@builder.io/qwik';
+import { component$, useStore, $, useWatch$ } from '@builder.io/qwik';
 import { ContactList } from './contactList';
 
 export const Contact = component$(() => {
   const store: any = useStore({
     contacts: [],
+  });
+
+  useWatch$(({ track }) => {
+    track(store, 'contacts');
   });
 
   const openContacts = $(() => {
@@ -16,7 +20,7 @@ export const Contact = component$(() => {
         store.contacts = res;
       });
     } else {
-        store.contacts = [];
+      store.contacts = [];
     }
   });
 
