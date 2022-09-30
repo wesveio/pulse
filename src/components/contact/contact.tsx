@@ -31,6 +31,8 @@ export const openContacts = (contacts:any) => {
       return data;
       //   console.log('STORE CONTACTS', contacts);
     });
+  } else {
+      return []
   }
 };
 
