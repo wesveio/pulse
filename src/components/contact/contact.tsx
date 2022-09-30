@@ -69,7 +69,7 @@ export const ContactComponent = component$(() => {
   return (
     <>
       <button
-        onClick$={() => (store.contacts = openContacts)}
+        onClick$={() => (store.contacts = openContacts())}
         class='button button--green'
       >
         Contacts 📡
