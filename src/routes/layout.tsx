@@ -12,6 +12,9 @@ export default component$(() => {
         <a href="https://bckstg.com.br/?utm_source=Pulse" target="_blank">
           Made with ♡ by BCKSTG
         </a>
+        <a href="https://qwik.builder.io/?ref=bckstg.com.br" target="_blank">
+          Powered with ♡ by qwik
+        </a>
       </footer>
     </>
   );
