@@ -17,10 +17,11 @@ export const openContacts = component$(() => {
   
   if (supported) {
     const nav = navigator as any;
-    const contactsSelected = await nav?.contacts?.select(props, opts);
+    nav?.contacts?.select(props, opts).then((data:any)=>{
+        console.log('SELECTED CONTACTS', data);
+    })
     // contacts.push(...contactsSelected)
     // console.log('STORE CONTACTS', contacts);
-    console.log('SELECTED CONTACTS', contactsSelected);
   }
   return <></>
 });
@@ -44,7 +45,7 @@ export const ContactComponent = component$(() => {
       {contacts.length ? (
         <p>{JSON.stringify(contacts?.name)}</p>
       ) : (
-        <button onClick$={() => openContacts()} class='button button--green'>
+        <button onClick$={() => openContacts} class='button button--green'>
           Contacts 📡
         </button>
       )}
