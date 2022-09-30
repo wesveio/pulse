@@ -28,7 +28,7 @@ export const openContacts = (contacts:any) => {
     const nav = navigator as any;
     nav?.contacts?.select(props, opts).then((data: any) => {
       console.log('SELECTED CONTACTS', data);
-      contacts.contacts = data;
+      return data;
       //   console.log('STORE CONTACTS', contacts);
     });
   }
@@ -46,7 +46,7 @@ export const ContactComponent = component$(() => {
   return (
     <>
       <button
-        onClick$={() => openContacts(contacts)}
+        onClick$={() => contacts.contacts = openContacts(contacts)}
         class='button button--green'
       >
         Contacts 📡
