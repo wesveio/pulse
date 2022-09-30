@@ -8,11 +8,13 @@ import {
 
 export const ContactsContext = createContext('Contacts');
 
-export const openContacts = async () => {
+export const openContacts = component$(() => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
-//   const contacts = useContext(ContactsContext) as any;
+  const contacts = useContext(ContactsContext) as any;
+  console.log('openContacts', contacts);
+  
   if (supported) {
     const nav = navigator as any;
     const contactsSelected = await nav?.contacts?.select(props, opts);
@@ -20,7 +22,8 @@ export const openContacts = async () => {
     // console.log('STORE CONTACTS', contacts);
     console.log('SELECTED CONTACTS', contactsSelected);
   }
-};
+  return <></>
+});
 
 export const Contact = component$(() => {
     useContextProvider(
