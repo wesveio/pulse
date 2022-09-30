@@ -41,7 +41,7 @@ export const ContactComponent = component$(() => {
   const contacts = useContext(ContactsContext) as any;
 
   useWatch$(({ track }) => {
-    track(contacts);
+    track(contacts, 'contacts');
   });
 
   console.log('CONTACTS', contacts?.contacts);
