@@ -29,8 +29,11 @@ export const openContacts = (contacts: any) => {
     const nav = navigator as any;
     nav?.contacts?.select(props, opts).then((data: any) => {
       console.log('SELECTED CONTACTS', data);
-      contacts.contacts.push(...data);
-      console.log('STORE CONTACTS', contacts);
+      useStore({
+        contacts: data
+      })
+    //   contacts.contacts.push(...data);
+    //   console.log('STORE CONTACTS', contacts);
     });
   }
 };
