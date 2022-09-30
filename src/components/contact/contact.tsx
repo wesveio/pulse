@@ -54,6 +54,7 @@ export const ContactComponent = component$(() => {
       >
         Contacts 📡
       </button>
+      {contacts.contacts.length ? <p>Teste</p> : <></>}
     </>
   );
 });
