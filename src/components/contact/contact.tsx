@@ -41,7 +41,7 @@ export const ContactComponent = component$(() => {
     contacts: [],
   });
 
-  useWatch$(({ track }) => {
+  useWatch$(async({ track }) => {
     track(store, 'contacts');
   });
 
