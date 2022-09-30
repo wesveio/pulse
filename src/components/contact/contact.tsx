@@ -40,9 +40,9 @@ export const openContacts = async (contacts: any) => {
 export const ContactComponent = component$(() => {
   const contacts = useContext(ContactsContext) as any;
 
-  useWatch$(({ track }) => {
+  /* useWatch$(({ track }) => {
     track(contacts, 'contacts');
-  });
+  }); */
 
   console.log('CONTACTS', contacts?.contacts);
 
