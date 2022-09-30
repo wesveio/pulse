@@ -47,29 +47,24 @@ export const ContactComponent = component$(() => {
     const props = ['name', 'email', 'tel', 'address', 'icon'];
     const opts = { multiple: true };
     const supported = 'contacts' in navigator && 'ContactsManager' in window;
-    //   console.log('####', contacts);
     if (supported) {
       const nav = navigator as any;
       nav?.contacts?.select(props, opts).then((res: any) => {
         console.log('SELECTED CONTACTS', res);
-        return res;
+        store.contacts = res;
       });
     } else {
       console.log('@@@@@ ELSE');
-      return [];
+      store.contacts = [];
     }
   });
-
-  /* useWatch$(async({ track }) => {
-    track(store, 'contacts');
-  }); */
 
   console.log('CONTACTS', store?.contacts);
 
   return (
     <>
       <button
-        onClick$={() => (store.contacts = openContacts())}
+        onClick$={() => (openContacts())}
         class='button button--green'
       >
         Contacts 📡
