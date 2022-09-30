@@ -20,14 +20,14 @@ export const Contact = component$(() => {
   return <ContactComponent />;
 });
 
-export const openContacts = (contacts: any) => {
+export const openContacts = async (contacts: any) => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
   console.log('####', contacts)
   if (supported) {
     const nav = navigator as any;
-    nav?.contacts?.select(props, opts).then((data: any) => {
+    await nav?.contacts?.select(props, opts).then((data: any) => {
       console.log('SELECTED CONTACTS', data);
       return data;
       //   console.log('STORE CONTACTS', contacts);
