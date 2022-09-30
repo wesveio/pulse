@@ -4,7 +4,7 @@ import {
   useContextProvider,
   useStore,
   useContext,
-  useWatch$
+  useWatch$,
 } from '@builder.io/qwik';
 
 export const ContactsContext = createContext('Contacts');
@@ -20,7 +20,7 @@ export const Contact = component$(() => {
   return <ContactComponent />;
 });
 
-export const openContacts = (contacts:any) => {
+export const openContacts = (contacts: any) => {
   const props = ['name', 'email', 'tel', 'address', 'icon'];
   const opts = { multiple: true };
   const supported = 'contacts' in navigator && 'ContactsManager' in window;
@@ -32,7 +32,7 @@ export const openContacts = (contacts:any) => {
       //   console.log('STORE CONTACTS', contacts);
     });
   } else {
-      return []
+    return contacts;
   }
 };
 
@@ -48,7 +48,7 @@ export const ContactComponent = component$(() => {
   return (
     <>
       <button
-        onClick$={() => contacts.contacts = openContacts(contacts)}
+        onClick$={() => (contacts.contacts = openContacts(contacts.contacts))}
         class='button button--green'
       >
         Contacts 📡
