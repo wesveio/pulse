@@ -29,10 +29,10 @@ export const openContacts = async (contacts: any) => {
     const nav = navigator as any;
     const res = await nav?.contacts?.select(props, opts);
     console.log('SELECTED CONTACTS', res);
-    return res;
+    contacts = res;
   } else {
-    console.log('@@@@@ ELSE');
-    return contacts;
+    console.log('@@@@@ ELSE', contacts);
+    // contacts = contacts;
   }
   console.log('$$$$$ PASSOU');
 };
@@ -49,7 +49,7 @@ export const ContactComponent = component$(() => {
   return (
     <>
       <button
-        onClick$={() => (contacts.contacts = openContacts(contacts.contacts))}
+        onClick$={() => (openContacts(contacts.contacts))}
         class='button button--green'
       >
         Contacts 📡
