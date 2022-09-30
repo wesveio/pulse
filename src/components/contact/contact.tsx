@@ -27,9 +27,10 @@ export const openContacts = async () => {
   //   console.log('####', contacts);
   if (supported) {
     const nav = navigator as any;
-    const res = await nav?.contacts?.select(props, opts);
-    console.log('SELECTED CONTACTS', res);
-    return res;
+    return await nav?.contacts?.select(props, opts).then((res:any) => {
+        console.log('SELECTED CONTACTS', res);
+        return res
+    })
   } else {
     console.log('@@@@@ ELSE');
     return [];
@@ -56,7 +57,7 @@ export const ContactComponent = component$(() => {
         Contacts 📡
       </button>
       {JSON.stringify(store.contacts)}
-      {/* {store.contacts.length ? <p>Teste</p> : <></>} */}
+      {store.contacts.length ? <p>Teste</p> : <></>}
     </>
   );
 });
